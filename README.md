@@ -1,5 +1,5 @@
 
-Signal Check
+# Signal Check
 
 An open-source web app that analyzes audio metrics in the browser (peak, loudness, BPM, stereo width) and uses Google's Gemini API to generate AI mixing notes and lyrics.
 
@@ -7,7 +7,7 @@ An open-source web app that analyzes audio metrics in the browser (peak, loudnes
 
     Free Tier: Runs on Google's free Gemini API tier via Vercel serverless functions.
 
-Project Structure
+# Project Structure
 Plaintext
 
 index.html           # Frontend UI (single file)
@@ -15,7 +15,7 @@ api/mix-feedback.js  # Serverless function for AI mixing notes
 api/lyrics.js        # Serverless function for AI lyrics generator
 package.json
 
-Quick Deploy to Vercel
+# Quick Deploy to Vercel
 1. Get a Free Gemini API Key
 
     Go to Google AI Studio and create a free API key.
@@ -35,7 +35,7 @@ Quick Deploy to Vercel
 
     Redeploy your project to apply the variable.
 
-Local Development
+# Local Development
 
 To run the app locally using the Vercel CLI:
 Bash
@@ -43,10 +43,10 @@ Bash
 npm i -g vercel
 vercel dev
 
-    This runs the app and /api functions together on localhost:3000.
+This runs the app and /api functions together on localhost:3000.
 
-Quick Notes
+# Quick Notes
 
-    Model Updates: The app uses Google's lightweight flash models. If you ever encounter a model availability error, update the model name in your api/ JavaScript files to match the current Google Gemini Models Documentation.
+Model Updates: The app uses Google's lightweight flash models. If you ever encounter a model availability error, update the model name in your api/ JavaScript files to match the current Google Gemini Models Documentation.
 
-    Local Storage: Past session history is saved directly to the user's browser via localStorage.
+Local Storage: Past session history is saved directly to the user's browser via localStorage.
