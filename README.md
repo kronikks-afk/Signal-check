@@ -1,84 +1,52 @@
-# Signal Check
+Here is a simplified, easy-to-read version of your README:
+Signal Check
 
-Upload an MP3, get real measured audio metrics (peak, loudness, dynamic
-range, clipping, frequency balance, estimated BPM, stereo width), plus
-AI-written mixing notes and an original AI lyrics generator — running
-entirely on Google's **free** Gemini API tier.
+An open-source web app that analyzes audio metrics in the browser (peak, loudness, BPM, stereo width) and uses Google's Gemini API to generate AI mixing notes and lyrics.
 
-All audio analysis runs client-side in the browser (Web Audio API — no
-audio file ever leaves the user's machine). Two small serverless
-functions call the Gemini API on the server side, so your API key is
-never exposed to the browser.
+    Privacy First: Audio analysis happens entirely in the browser. Audio files never leave the user's machine—only text metrics and prompts are sent to the AI.
 
-## Project structure
+    Free Tier: Runs on Google's free Gemini API tier via Vercel serverless functions.
 
-```
-index.html          the whole frontend (single file)
-api/mix-feedback.js  serverless function -> AI mixing notes
-api/lyrics.js         serverless function -> AI lyrics generator
+Project Structure
+Plaintext
+
+index.html           # Frontend UI (single file)
+api/mix-feedback.js  # Serverless function for AI mixing notes
+api/lyrics.js        # Serverless function for AI lyrics generator
 package.json
-```
 
-## Deploy to Vercel (free)
+Quick Deploy to Vercel
+1. Get a Free Gemini API Key
 
-**1. Get a free Gemini API key**
-Go to https://aistudio.google.com/apikey, sign in with a Google account,
-and click "Create API key." No credit card, no expiration. This uses
-the Gemini 2.5 Flash model, which is on Google's permanent free tier
-(roughly 1,500 requests/day — far more than a personal project needs).
+    Go to Google AI Studio and create a free API key.
 
-Note: on the free tier, Google may use your prompts to improve their
-models. This app only sends measured numbers (loudness, frequency
-bands, etc.) and your lyrics prompt fields — never the audio file
-itself — but keep that in mind if that matters to you.
+2. Deploy to Vercel
 
-**2. Push this folder to a GitHub repo** (or deploy directly with the CLI, see below).
+    Push this folder to a GitHub repository.
 
-**3. Import into Vercel**
-- Go to https://vercel.com/new and import the repo (or run `vercel` from
-  this folder with the Vercel CLI installed: `npm i -g vercel`).
-- Framework preset: choose **Other** — no build step is needed.
+    Go to Vercel New Project, import your repo, and choose Other as the framework preset (no build step required).
 
-**4. Add your API key as an environment variable**
-In the Vercel project: **Settings -> Environment Variables**, add:
+3. Set Your Environment Variable
 
-```
-GEMINI_API_KEY = your key from AI Studio
-```
+    In your Vercel project settings (Settings -> Environment Variables), add:
+    Plaintext
 
-Apply it to Production (and Preview/Development if you'll test those).
-Redeploy after adding it — env vars only apply to new deployments.
+    GEMINI_API_KEY = your_api_key_here
 
-**5. Done**
-Your site will be live at `your-project.vercel.app`. Both the mixing
-notes and lyrics generator call `/api/mix-feedback` and `/api/lyrics` on
-your own domain, so there's no CORS issue and the key stays server-side.
+    Redeploy your project to apply the variable.
 
-## Local development
+Local Development
 
-```bash
+To run the app locally using the Vercel CLI:
+Bash
+
 npm i -g vercel
 vercel dev
-```
 
-This serves `index.html` and the `/api` functions together on
-`localhost:3000`, using a `.env` file (or `vercel env pull`) for
-`GEMINI_API_KEY`.
+    This runs the app and /api functions together on localhost:3000.
 
-## Notes
+Quick Notes
 
-- The model used server-side is `gemini-3.5-flash-lite`, currently on
-  Google's free tier. Google has been retiring older model IDs quickly
-  in 2026 (`gemini-2.5-flash-lite` was pulled from new users mid-year),
-  so if you get a 404 "no longer available" error in the future, check
-  https://ai.google.dev/gemini-api/docs/models for the current name and
-  swap the model string in `api/mix-feedback.js`, `api/next-lines.js`,
-  and `api/lyrics.js`.
-- The BPM estimate is a lightweight autocorrelation-based guess, not a
-  professional beat detector — it's fine for a rough read, not for
-  syncing to a DAW.
-- Session history (past scores) is stored in the browser's
-  `localStorage`, per-device — it isn't shared across users or devices.
-- If you ever outgrow the free tier's daily request cap, the same code
-  works with a paid Gemini or Anthropic key — just point the fetch URL
-  and payload shape at the provider you switch to.
+    Model Updates: The app uses Google's lightweight flash models. If you ever encounter a model availability error, update the model name in your api/ JavaScript files to match the current Google Gemini Models Documentation.
+
+    Local Storage: Past session history is saved directly to the user's browser via localStorage.
