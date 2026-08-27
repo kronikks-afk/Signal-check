@@ -3,9 +3,9 @@
 
 An open-source web app that analyzes audio metrics in the browser (peak, loudness, BPM, stereo width) and uses Google's Gemini API to generate AI mixing notes and lyrics.
 
-    Privacy First: Audio analysis happens entirely in the browser. Audio files never leave the user's machine—only text metrics and prompts are sent to the AI.
+Privacy First: Audio analysis happens entirely in the browser. Audio files never leave the user's machine—only text metrics and prompts are sent to the AI.
 
-    Free Tier: Runs on Google's free Gemini API tier via Vercel serverless functions.
+Free Tier: Runs on Google's free Gemini API tier via Vercel serverless functions.
 
 # Project Structure
 Plaintext
