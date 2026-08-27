@@ -1,4 +1,4 @@
-Here is a simplified, easy-to-read version of your README:
+
 Signal Check
 
 An open-source web app that analyzes audio metrics in the browser (peak, loudness, BPM, stereo width) and uses Google's Gemini API to generate AI mixing notes and lyrics.
